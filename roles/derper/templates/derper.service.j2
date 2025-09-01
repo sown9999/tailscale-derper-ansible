@@ -1,0 +1,13 @@
+[Unit]
+Description=Tailscale DERP Server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart={{ derper_bin_path }} --hostname={{ derper_domain }}
+Restart=on-failure
+User={{ derper_user }}
+WorkingDirectory=/root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+---
+- hosts: derp_servers
+  become: yes
+  roles:
+    - common
+    - ssh-hardening
+    - firewall
+    - fail2ban
+    - derper

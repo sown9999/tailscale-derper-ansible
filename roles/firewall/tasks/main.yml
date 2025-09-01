@@ -1,0 +1,28 @@
+---
+- name: Allow SSH
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+  notify: reload ufw
+
+- name: Allow DERP TCP ports 80 and 443
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop:
+    - 80
+    - 443
+  notify: reload ufw
+
+- name: Allow STUN UDP 3478
+  ufw:
+    rule: allow
+    port: 3478
+    proto: udp
+  notify: reload ufw
+
+- name: Enable UFW
+  command: ufw --force enable
+  notify: reload ufw

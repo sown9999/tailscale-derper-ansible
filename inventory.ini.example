@@ -1,0 +1,12 @@
+[derp_servers]
+derp-node ansible_host=103.164.57.189 ansible_user=root
+
+
+[derp_servers:vars]
+derper_domain=derp.tailscale.example.com
+derper_region_id=900
+derper_region_code=ind
+derper_region_name=Indonesia
+derper_bin_path=/root/go/bin/derper
+derper_user=root
+derper_public_ipv4=103.164.57.189

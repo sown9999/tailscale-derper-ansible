@@ -1,0 +1,69 @@
+---
+- name: Install derper binary if not present
+  command: go install tailscale.com/cmd/derper@latest
+  args:
+    creates: "{{ derper_bin_path }}"
+  environment:
+    GOPATH: /root/go
+
+- name: Deploy systemd service
+  template:
+    src: derper.service.j2
+    dest: /etc/systemd/system/derper.service
+    mode: 0644
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Enable and start derper
+  systemd:
+    name: derper
+    enabled: yes
+    state: started
+
+- name: Add nightly cron job for derper updates
+  cron:
+    name: "Update derper nightly"
+    user: root
+    minute: "0"
+    hour: "3"
+    job: "/usr/bin/go install tailscale.com/cmd/derper@latest && systemctl restart derper"
+
+- name: Write DERP config to NOTES.txt
+  delegate_to: localhost
+  become: no
+  run_once: true
+  copy:
+    dest: "./NOTES.txt"
+    content: |
+      Add the following to your Tailscale Admin Panel (JSON Configuration):
+
+        "derpMap": {
+          "OmitDefaultRegions": true,
+          "Regions": {
+            "{{ derper_region_id }}": {
+              "RegionID": {{ derper_region_id }},
+              "RegionCode": "{{ derper_region_code }}",
+              "RegionName": "{{ derper_region_name }}",
+              "Nodes": [
+                {
+                  "Name": "1",
+                  "RegionID": {{ derper_region_id }},
+                  "HostName": "{{ derper_domain }}"{% if derper_public_ipv4 is defined %},
+                  "IPv4": "{{ derper_public_ipv4 }}"{% endif %},
+                }
+              ]
+            }
+          }
+        }
+
+      Then verify with:
+        tailscale status
+        tailscale netcheck
+
+      Note: derper will self-update every night at 3AM (node server time). 
+
+- name: Let you know how to config
+  debug:
+    msg: "Check out NOTES.txt to complete"

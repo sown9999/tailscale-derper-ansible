@@ -1,0 +1,10 @@
+---
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - golang-go
+    - ufw
+    - fail2ban
