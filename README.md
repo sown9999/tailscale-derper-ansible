@@ -14,13 +14,13 @@ This includes:
 - firewall (UFW)
 - fail2ban
 
----
+
 
 ## Custom Configuration
 
 Adjust host-specific settings (domain, region, IP, etc.) directly in `inventory.ini` to suit your environment.
 
----
+
 
 ## Usage
 
@@ -38,7 +38,7 @@ ansible-playbook -i inventory.ini derper.yaml
 * `NOTES.txt` will be generated locally containing the DERP map snippet for Tailscale.
 * If you use cloudflare, **disable the proxy**.
 
----
+
 
 ## Debugging
 
@@ -58,7 +58,7 @@ tailscale netcheck # if your derper is close to you, you should see it
 
 If you want to use other derp provided by tailscale when yours is down, set `"OmitDefaultRegions"` to `false`.
 
-For further things, RTFM: (https://tailscale.com/kb/1118/custom-derp-servers)[https://tailscale.com/kb/1118/custom-derp-servers].
+For further things, RTFM: [https://tailscale.com/kb/1118/custom-derp-servers](https://tailscale.com/kb/1118/custom-derp-servers).
 
 # Contributions
 
