@@ -1,5 +1,10 @@
 # Tailscale DERP Ansible
 
+> [!IMPORTANT]  
+> This project is considered **feature-complete** — it already does what it is intended to do.  
+> I may add small improvements or fixes when necessary, but no major new features are planned.  
+> You are welcome to **contribute**, or **fork** the project to extend it further.
+
 ## Overview
 
 This playbook helps you to self-host a **Tailscale DERP server** on Ubuntu/Debian. It is designed to run on **bare-metal**, since DERP does not work reliably behind firewalls, NAT, or load balancers. Custom DERP servers require direct, be on a publicly accessible network.
