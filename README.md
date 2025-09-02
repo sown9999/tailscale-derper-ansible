@@ -16,7 +16,7 @@ This includes:
     - Allows only port 80, 443, 3478 (stun)
 - fail2ban
     - includes configurable report to AbuseIPDB
-- Block Blacklisted IPs, default is 3 (moderate), configurable from 1-8
+- block blacklisted IPs, default is 3 (moderate), configurable from 1-8
 
 ## Custom Configuration
 
