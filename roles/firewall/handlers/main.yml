@@ -1,3 +1,6 @@
 ---
 - name: reload ufw
   command: ufw reload
+
+- name: reload fail2ban
+  command: fail2ban-client reload

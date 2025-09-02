@@ -1,0 +1,16 @@
+[DEFAULT]
+banaction = nftables
+banaction_allports = nftables[type=allports]
+backend = systemd
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 24h
+{% if report_to_abuseipdb | bool %}
+action = %(action_)s
+         %(action_abuseipdb)s[abuseipdb_category="18,22"]
+{% endif %}

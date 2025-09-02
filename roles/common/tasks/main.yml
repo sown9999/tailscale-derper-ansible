@@ -8,3 +8,13 @@
     - golang-go
     - ufw
     - fail2ban
+    - iptables
+    - ipset
+
+- name: Set Regular updates
+  cron:
+    name: "System updates"
+    user: root
+    minute: "0"
+    hour: "5"
+    job: "/usr/bin/apt update -qq && /usr/bin/apt upgrade -y -qq"

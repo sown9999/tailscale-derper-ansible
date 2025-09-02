@@ -10,3 +10,10 @@ derper_region_name=Indonesia
 derper_bin_path=/root/go/bin/derper
 derper_user=root
 derper_public_ipv4=103.164.57.189
+# This is based on this https://github.com/stamparm/ipsum/tree/master/levels
+# max is level 8
+firewall_level=3
+# https://www.abuseipdb.com/login
+# This reports to abuseipdb, this helps you indirectly
+report_to_abuseipdb=false
+abuseipdb_apikey=

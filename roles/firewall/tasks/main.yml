@@ -26,3 +26,35 @@
 - name: Enable UFW
   command: ufw --force enable
   notify: reload ufw
+
+- name: Add IP Blacklisting
+  template:
+    src: ip-blacklisting.sh.j2
+    dest: /usr/local/bin/ip-blacklister.sh
+    mode: 0744
+
+- name: Block IPs
+  cron:
+    name: "Daily IP Blacklist"
+    user: root
+    minute: "0"
+    hour: "5"
+    job: "/usr/local/bin/ip-blacklister.sh"
+
+- name: Add config for fail2ban
+  template:
+    src: defaults-debian.conf.j2
+    dest: /etc/fail2ban/jail.d/defaults-debian.conf
+    mode: 0644
+  notify: reload fail2ban
+
+- name: Add API Key to Report to AbuseIPDB
+  lineinfile:
+    path: /etc/fail2ban/action.d/abuseipdb.conf
+    regexp: '^abuseipdb_apikey'
+    line: "abuseipdb_apikey = {{ abuseipdb_apikey }}"
+  when:
+    - report_to_abuseipdb | default(false)
+    - abuseipdb_apikey is defined
+    - abuseipdb_apikey | trim | length > 0
+  notify: reload fail2ban

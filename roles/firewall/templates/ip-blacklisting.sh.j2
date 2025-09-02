@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Flushing IPs..."
+ipset -q flush ipsum
+
+echo "Creating a new blacklisted list..."
+ipset -q create ipsum hash:ip
+
+echo "Grabing {{ firewall_level }} level of blacklisted IPs ..."
+for ip in $(curl https://raw.githubusercontent.com/stamparm/ipsum/master/levels/{{ firewall_level }}.txt 2>/dev/null); do ipset add ipsum $ip; done
+
+echo "Setting up iptables rules..."
+
+iptables -D INPUT -m set --match-set ipsum src -j DROP 2>/dev/null
+
+iptables -I INPUT -m set --match-set ipsum src -j DROP
+
+echo "-------- DONE --------"
