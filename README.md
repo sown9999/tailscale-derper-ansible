@@ -53,6 +53,7 @@ Verify if your DERP is accessible:
 ```bash
 tailscale status # you should see what you specified as your derper_region_code
 tailscale netcheck # if your derper is close to you, you should see it first
+tailscale debug derp-map # you should see your config you added on tailscale
 ```
 
 If you want to use the existing DERP provided by tailscale if yours is down, set `"OmitDefaultRegions"` to `false`, it will always take the first one based on `tailscale netcheck`.
